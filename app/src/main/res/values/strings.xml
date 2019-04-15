@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">WeddingFlow</string>
+
+    <!-- Hints -->
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+
+    <!-- checkbox -->
+    <string name="login_checkbox">Stay signed in</string>
+
+    <!-- content decriptions -->
+    <string name="logo_content_description">Logo for WeddingFlow application.</string>
+
+    <!-- Button Text -->
+    <string name="forgot_password_button">Forgotten Password?</string>
+    <string name="login_button">Login</string>
+    <string name="sign_up_button">Sign up</string>
+    <!-- Eror messages -->
+    <string name="login_error">ERROR: Invalid Credentials</string>
 </resources>
