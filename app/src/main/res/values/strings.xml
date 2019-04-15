@@ -15,6 +15,11 @@
     <string name="forgot_password_button">Forgotten Password?</string>
     <string name="login_button">Login</string>
     <string name="sign_up_button">Sign up</string>
+
     <!-- Eror messages -->
     <string name="login_error">ERROR: Invalid Credentials</string>
+
+    <!-- Shared Preferences -->
+    <string name="SP_UserId">com.shumadlads.hallamhelper.hallamhelper.UserId</string>
+    <string name="SP_StayLoggedIn">com.shumadlads.hallamhelper.hallamhelper.StayLoggedIn</string>
 </resources>
