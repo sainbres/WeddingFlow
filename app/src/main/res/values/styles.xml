@@ -10,6 +10,15 @@
         <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 
+    <!-- BottomMenu theme. -->
+    <style name="BottomMenuTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
     <!-- Base EditText theme -->
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorAccent">@color/colorPrimary</item>
