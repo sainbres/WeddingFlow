@@ -24,6 +24,12 @@ public class User extends BaseModel {
     @Column
     int ThemeSetting;
 
+    @Column
+    String FirstName;
+
+    @Column
+    String Surname;
+
     public int getUserId() {
         return UserId;
     }
@@ -43,4 +49,18 @@ public class User extends BaseModel {
 
     public int getThemeSetting() { return ThemeSetting; }
     public void setThemeSetting(int themeSetting) { ThemeSetting = themeSetting; }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
+    public String getSurname() {
+        return Surname;
+    }
+    public void setSurname(String surname) {
+        Surname = surname;
+    }
 }

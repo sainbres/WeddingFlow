@@ -31,10 +31,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:theme="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_AppBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/signup_AppBarLayout"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/input_first_name"
@@ -55,10 +55,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:theme="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FirstNameInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/FirstNameInputLayout"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/input_surname"
@@ -78,11 +78,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:theme="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SurnameInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/SurnameInputLayout"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/input_email"
@@ -102,11 +102,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:theme="@style/TextLabel"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/EmailInputLayout"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/input_password"
@@ -127,10 +127,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:theme="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/PasswordInputLayout"
+        app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/input_dob"
