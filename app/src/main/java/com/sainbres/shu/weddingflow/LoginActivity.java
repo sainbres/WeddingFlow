@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                         .querySingle();
 
                 if (user != null) {
+                    // Correct credentials
                     Editor.putInt(getString(R.string.SP_UserId), user.getUserId());
                     Editor.putBoolean(getString(R.string.SP_StayLoggedIn), staySignedIn.isChecked());
                     Editor.commit();
@@ -59,16 +60,19 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
-                    //correct password
+
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                    // Incorrect credentials
                     errorTextView.setVisibility(View.VISIBLE);
                 }
+            }
+        });
 
-
-                //wrong password
-
-
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

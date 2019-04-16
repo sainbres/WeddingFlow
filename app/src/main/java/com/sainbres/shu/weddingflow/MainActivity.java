@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Home");
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        //toolbar.setNavigationIcon(R.drawable.ic_settings);
         //getSupportActionBar().setIcon(R.drawable.ic_settings);
     }
 

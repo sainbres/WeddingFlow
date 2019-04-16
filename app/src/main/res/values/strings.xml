@@ -7,8 +7,11 @@
     <string name="help">Help</string>
 
     <!-- Hints -->
+    <string name="first_name_hint">First name</string>
+    <string name="surname_hint">Surname</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
+    <string name="dob_hint">Date of Birth</string>
 
     <!-- checkbox -->
     <string name="login_checkbox">Stay signed in</string>
