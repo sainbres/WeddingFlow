@@ -19,11 +19,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.sainbres.shu.weddingflow.Fragments.BudgetFragment;
 import com.sainbres.shu.weddingflow.Fragments.GuestListFragment;
 import com.sainbres.shu.weddingflow.Fragments.HomeFragment;
 import com.sainbres.shu.weddingflow.Fragments.OrganizeFragment;
 import com.sainbres.shu.weddingflow.Fragments.ShareFragment;
+import com.sainbres.shu.weddingflow.Models.WeddingEvent;
+import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Editor = SharedPrefs.edit();
+
+        int userId = SharedPrefs.getInt(getString(R.string.SP_UserId), -1);
+        if (userId == -1){
+            // default -> do nothing
+        } else {
+            WeddingEvent event = SQLite.select().from(WeddingEvent.class).where(WeddingEvent_Table.UserId.eq(userId)).querySingle();
+            if (event == null){
+                Intent intent = new Intent(getApplicationContext(), SetupWeddingEventActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         setContentView(R.layout.activity_main);
 
