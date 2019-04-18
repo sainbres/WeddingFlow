@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if (userId == -1){
             // default -> do nothing
         } else {
-            WeddingEvent event = SQLite.select().from(WeddingEvent.class).where(WeddingEvent_Table.User.eq(userId)).querySingle();
+            WeddingEvent event = SQLite.select().from(WeddingEvent.class).where(WeddingEvent_Table.UserId.eq(userId)).querySingle();
             if (event == null){
                 Intent intent = new Intent(getApplicationContext(), SetupWeddingEventActivity.class);
                 startActivity(intent);

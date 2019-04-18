@@ -3,6 +3,8 @@ package com.sainbres.shu.weddingflow;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -34,10 +36,13 @@ import com.sainbres.shu.weddingflow.Models.User_Table;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class SetupWeddingEventActivity extends AppCompatActivity {
 
@@ -45,6 +50,7 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMG = 1;
     private EditText imageText;
     private byte[] imageByteData;
+    private String imagePath;
     public final int REQUEST_CODE_FOR_PERMISSIONS = 654;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -179,18 +185,13 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
                             if (userId != -1){
                                 WeddingEvent newEvent = new WeddingEvent();
 
-                                User user = SQLite.select().from(User.class)
-                                        .where(User_Table.UserId.eq(userId))
-                                        .querySingle();
-
-                                newEvent.setUser(user);
+                                newEvent.setUserId(userId);
                                 newEvent.setLocation(locText);
                                 newEvent.setParticipants(participantsText);
                                 newEvent.setWeddingDate(dateText);
 
                                 if (!imageText.getText().toString().equals("")){
-                                    Blob blob = new Blob(imageByteData);
-                                    newEvent.setImage(blob);
+                                    newEvent.setImage(imagePath);
                                 } else {
                                     newEvent.setImage(null);
                                 }
@@ -217,6 +218,10 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == RESULT_LOAD_IMG){
+            ContextWrapper cw = new ContextWrapper(getApplicationContext());
+            String uniquePathName = UUID.randomUUID().toString();
+            File directory = cw.getDir(uniquePathName, Context.MODE_PRIVATE);
+            File mypath = new File(directory, "fileName.jpg");
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -228,12 +233,20 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+
             imageText.setText(picturePath.substring(picturePath.lastIndexOf("/") + 1).trim());
+
             Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
 
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-            imageByteData = outputStream.toByteArray();
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(mypath);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            imagePath = directory.getAbsolutePath();
 
         }
     }

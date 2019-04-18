@@ -1,4 +1,3 @@
-
 package com.sainbres.shu.weddingflow.Models;
 
 
@@ -22,10 +21,8 @@ public class WeddingEvent extends BaseModel {
     @PrimaryKey(autoincrement = true)
     int EventId;
 
-    @ForeignKey(stubbedRelationship = true, saveForeignKeyModel = false, references = {@ForeignKeyReference(columnName = "User", foreignKeyColumnName = "UserId")})
-    User user;
-
-    //int UserId;
+    @Column
+    int UserId;
 
     @Column
     String Location;
@@ -37,7 +34,7 @@ public class WeddingEvent extends BaseModel {
     String WeddingDate;
 
     @Column
-    Blob Image;
+    String Image;
 
 
     public int getEventId() {
@@ -47,8 +44,8 @@ public class WeddingEvent extends BaseModel {
         EventId = eventId;
     }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public int getUserId() { return this.UserId; }
+    public void setUserId(int userId) { this.UserId = userId; }
 
     public String getLocation() { return Location; }
     public void setLocation(String location) { Location = location; }
@@ -59,7 +56,7 @@ public class WeddingEvent extends BaseModel {
     public String getWeddingDate() { return WeddingDate; }
     public void setWeddingDate(String weddingDate) { WeddingDate = weddingDate; }
 
-    public Blob getImage() { return Image; }
-    public void setImage(Blob image) { Image = image; }
+    public String getImage() { return Image; }
+    public void setImage(String image) { Image = image; }
 
 }

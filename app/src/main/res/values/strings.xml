@@ -16,7 +16,7 @@
     <!--Home Fragment-->
     <string name="home_countdown_default">0</string>
     <string name="home_days">days</string>
-    <string name="home_first_line">Until the wedding of</string>
+    <string name="home_first_line">until the wedding of</string>
     <string name="home_participants">[PARTICIPANTS]</string>
     <string name="home_second_line">at</string>
     <string name="home_location">[LOCATION]</string>

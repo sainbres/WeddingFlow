@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/weddingPhotoImageView"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -104,6 +104,7 @@
         android:layout_marginEnd="8dp"
         android:text="@string/home_participants"
         android:textAlignment="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +131,7 @@
         android:layout_marginEnd="8dp"
         android:text="@string/home_location"
         android:textAlignment="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
