@@ -19,6 +19,10 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="dob_hint">Date of Birth</string>
+    <string name="wedding_participants_hint">Wedding Participants</string>
+    <string name="wedding_location_hint">Location</string>
+    <string name="wedding_date_hint">Date</string>
+    <string name="wedding_picture_hint">Picture</string>
 
     <!-- checkbox -->
     <string name="login_checkbox">Stay signed in</string>
@@ -30,6 +34,7 @@
     <string name="forgot_password_button">Forgotten Password?</string>
     <string name="login_button">Login</string>
     <string name="sign_up_button">Sign up</string>
+    <string name="complete_setup_button">Complete Setup</string>
 
     <!-- Eror messages -->
     <string name="login_error">ERROR: Invalid Credentials</string>
@@ -37,6 +42,7 @@
     <!-- Shared Preferences -->
     <string name="SP_UserId">com.shumadlads.hallamhelper.hallamhelper.UserId</string>
     <string name="SP_StayLoggedIn">com.shumadlads.hallamhelper.hallamhelper.StayLoggedIn</string>
+    <string name="SP_EventId">com.shumadlads.hallamhelper.hallamhelper.EventId</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -62,8 +62,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_share" />
-                            <entry key="sourceFile" value="C:\Users\Arnoux\Google Drive\Uni Work\SE\Y3\Project\Designs\Icons\share-circles-extended\google-circles-extended.svg" />
+                            <entry key="outputName" value="ic_camera" />
+                            <entry key="sourceFile" value="C:\Users\Arnoux\Google Drive\Uni Work\SE\Y3\Project\Designs\Icons\picture-camera\camera.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -22,10 +22,10 @@ public class WeddingEvent extends BaseModel {
     @PrimaryKey(autoincrement = true)
     int EventId;
 
-    @ForeignKey(stubbedRelationship = true, saveForeignKeyModel = false, references = {@ForeignKeyReference(columnName = "UserId", foreignKeyColumnName = "UserId")})
-    com.sainbres.shu.weddingflow.Models.User User;
+    @ForeignKey(stubbedRelationship = true, saveForeignKeyModel = false, references = {@ForeignKeyReference(columnName = "User", foreignKeyColumnName = "UserId")})
+    User user;
 
-    int UserId;
+    //int UserId;
 
     @Column
     String Location;
@@ -47,8 +47,8 @@ public class WeddingEvent extends BaseModel {
         EventId = eventId;
     }
 
-    public int getUserId() { return UserId; }
-    public void setUserId(int userId) { UserId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public String getLocation() { return Location; }
     public void setLocation(String location) { Location = location; }
