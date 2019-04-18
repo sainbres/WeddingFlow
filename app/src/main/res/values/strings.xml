@@ -13,6 +13,14 @@
     <string name="guest_list_menu">Guests</string>
     <string name="share_menu">Share</string>
 
+    <!--Home Fragment-->
+    <string name="home_countdown_default">0</string>
+    <string name="home_days">days</string>
+    <string name="home_first_line">Until the wedding of</string>
+    <string name="home_participants">[PARTICIPANTS]</string>
+    <string name="home_second_line">at</string>
+    <string name="home_location">[LOCATION]</string>
+
     <!-- Hints -->
     <string name="first_name_hint">First name</string>
     <string name="surname_hint">Surname</string>
@@ -29,6 +37,7 @@
 
     <!-- content decriptions -->
     <string name="logo_content_description">Logo for WeddingFlow application.</string>
+    <string name="home_image_content_description">Wedding Image</string>
 
     <!-- Button Text -->
     <string name="forgot_password_button">Forgotten Password?</string>
