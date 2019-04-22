@@ -3,6 +3,7 @@ package com.sainbres.shu.weddingflow;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -29,10 +30,16 @@ import com.sainbres.shu.weddingflow.Fragments.ShareFragment;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 
+import java.io.File;
+import java.net.URI;
+
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences SharedPrefs;
     private SharedPreferences.Editor Editor;
+
+    private String homeImagePath;
+    private Uri homeImageUri = null;
 
 
 
@@ -58,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Editor.putInt(getString(R.string.SP_EventId), event.getEventId());
                 Editor.commit();
+                if(event.getImage() != null){
+                    homeImageUri = Uri.fromFile(new File(event.getImage(), "fileName.jpg"));
+                    homeImagePath = event.getImage();
+                }
+
             }
         }
 
@@ -72,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else { //Default to load HomeFragment
-            loadFragment(new HomeFragment());
+            Fragment defaultFrag = new HomeFragment();
+            defaultFrag.setArguments(homeBundle());
+            loadFragment(defaultFrag);
         }
 
 
@@ -131,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.action_home:
                     fragment = new HomeFragment();
+                    fragment.setArguments(homeBundle());
                     loadFragment(fragment);
                     return true;
 
@@ -163,6 +178,16 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private Bundle homeBundle() {
+        Bundle homeBundle = new Bundle();
+        if (homeImageUri != null){
+            homeBundle.putString("uri", homeImageUri.toString());
+            homeBundle.putString("imagePath", homeImagePath);
+        }
+
+        return homeBundle;
     }
 }
 

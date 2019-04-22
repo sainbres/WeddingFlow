@@ -113,10 +113,15 @@ public class HomeFragment extends Fragment {
                 location.setText(event.getLocation());
 
                 if (event.getImage() != null){
-                    //File imgFile = new File(event.getImage());
-
-                    //Bitmap bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    image.setImageURI(Uri.fromFile(new File(event.getImage(), "fileName.jpg")));
+                    Bundle bundle = this.getArguments();
+                    if (bundle != null){
+                        if (bundle.getString("imagePath").equals(event.getImage()))
+                        {
+                            image.setImageURI(Uri.parse(bundle.getString("uri")));
+                        } else {
+                            image.setImageURI(Uri.fromFile(new File(event.getImage(), "fileName.jpg")));
+                        }
+                    }
                 }
             }
         }
