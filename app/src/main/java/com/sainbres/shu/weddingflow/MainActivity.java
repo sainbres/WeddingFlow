@@ -1,5 +1,6 @@
 package com.sainbres.shu.weddingflow;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -34,9 +35,12 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor Editor;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
 
         SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -103,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.help:
                 intent = new Intent(this, HelpActivity.class);
+
                 startActivity(intent);
                 return true;
             case R.id.logout:

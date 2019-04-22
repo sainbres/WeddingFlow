@@ -11,13 +11,12 @@
 
     <ImageView
         android:id="@+id/weddingPhotoImageView"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:src="@drawable/wedding_venue"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/home_image_content_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wedding_venue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

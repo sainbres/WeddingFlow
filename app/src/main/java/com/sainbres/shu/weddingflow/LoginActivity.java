@@ -1,5 +1,6 @@
 package com.sainbres.shu.weddingflow;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences SharedPrefs;
     private SharedPreferences.Editor Editor;
+    ProgressDialog nDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button signUpBtn = findViewById(R.id.signUpBtn);
         final TextView errorTextView = findViewById(R.id.errorTextView);
         final CheckBox staySignedIn = findViewById(R.id.staySignedIn);
+
 
         SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Editor = SharedPrefs.edit();
@@ -52,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                         .querySingle();
 
                 if (user != null) {
+
+
                     // Correct credentials
                     Editor.putInt(getString(R.string.SP_UserId), user.getUserId());
                     Editor.putBoolean(getString(R.string.SP_StayLoggedIn), staySignedIn.isChecked());
