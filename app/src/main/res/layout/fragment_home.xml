@@ -31,7 +31,7 @@
         android:focusable="true"
         android:src="@drawable/ic_plus"
         android:tint="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@+id/weddingPhotoImageView"
+        app:layout_constraintBottom_toTopOf="@+id/locationLine"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -77,17 +77,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="98dp"
         android:text="@string/home_days"
         app:layout_constraintStart_toEndOf="@+id/countdownLittle"
-        app:layout_constraintTop_toBottomOf="@+id/addPhotoFAB" />
+        app:layout_constraintTop_toBottomOf="@+id/locationLine" />
 
     <TextView
         android:id="@+id/firstLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:text="@string/home_first_line"
         android:textAlignment="center"
@@ -98,41 +98,31 @@
     <TextView
         android:id="@+id/participantsLine"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/home_participants"
         android:textAlignment="center"
-        android:textSize="14sp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstLine" />
 
     <TextView
-        android:id="@+id/secondLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/home_second_line"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/participantsLine" />
-
-    <TextView
         android:id="@+id/locationLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:background="@color/colorPrimaryTrans"
+        android:gravity="center"
         android:text="@string/home_location"
+        android:textColor="@color/colorWhite"
         android:textAlignment="center"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/weddingPhotoImageView"
+        app:layout_constraintEnd_toEndOf="@+id/weddingPhotoImageView"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondLine" />
+        app:layout_constraintStart_toStartOf="@+id/weddingPhotoImageView" />
 </android.support.constraint.ConstraintLayout>

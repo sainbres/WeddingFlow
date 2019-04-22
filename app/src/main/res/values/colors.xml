@@ -6,6 +6,7 @@
     <color name="colorGreyAccent">#686868</color>
     <color name="colorError">#b00200</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorPrimaryTrans">#b3487EB0</color>
     <color name="colorWhiteTrans">#b3ffffff</color>
     <color name="colorLightGrey">#c6c6c6</color>
 
