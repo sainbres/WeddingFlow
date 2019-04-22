@@ -46,6 +46,7 @@
     <string name="sign_up_button">Sign up</string>
     <string name="complete_setup_button">Complete Setup</string>
     <string name="edit_wedding_button">Finish Editing</string>
+    <string name="change_password_button">Change Password</string>
 
     <!-- Eror messages -->
     <string name="login_error">ERROR: Invalid Credentials</string>
@@ -54,6 +55,15 @@
     <string name="SP_UserId">com.shumadlads.hallamhelper.hallamhelper.UserId</string>
     <string name="SP_StayLoggedIn">com.shumadlads.hallamhelper.hallamhelper.StayLoggedIn</string>
     <string name="SP_EventId">com.shumadlads.hallamhelper.hallamhelper.EventId</string>
+
+    <!-- Settings -->
+
+    <!-- Account Settings -->
+    <string name="account_label">Account</string>
+
+    <string name="current_password">Enter Current Password</string>
+    <string name="new_password">Enter New Password</string>
+    <string name="confirm_password">Confirm Password</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
