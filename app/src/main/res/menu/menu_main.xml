@@ -6,6 +6,10 @@
         android:title="@string/settings"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/edit_wedding"
+        android:title="@string/edit_wedding"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/help"
         android:title="@string/help"
         app:showAsAction="never"/>

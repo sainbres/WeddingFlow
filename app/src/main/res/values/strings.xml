@@ -3,6 +3,7 @@
 
     <!-- Toolbar Menu options -->
     <string name="settings">Settings</string>
+    <string name="edit_wedding">Edit Wedding Details</string>
     <string name="log_out">Logout</string>
     <string name="help">Help</string>
 
@@ -44,6 +45,7 @@
     <string name="login_button">Login</string>
     <string name="sign_up_button">Sign up</string>
     <string name="complete_setup_button">Complete Setup</string>
+    <string name="edit_wedding_button">Finish Editing</string>
 
     <!-- Eror messages -->
     <string name="login_error">ERROR: Invalid Credentials</string>

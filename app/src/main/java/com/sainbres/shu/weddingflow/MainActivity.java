@@ -119,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.edit_wedding:
+                intent = new Intent(this, EditWeddingEventActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.help:
                 intent = new Intent(this, HelpActivity.class);
 

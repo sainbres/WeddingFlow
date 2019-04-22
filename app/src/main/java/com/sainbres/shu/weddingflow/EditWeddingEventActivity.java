@@ -22,21 +22,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.raizlabs.android.dbflow.data.Blob;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import com.sainbres.shu.weddingflow.Models.User;
-import com.sainbres.shu.weddingflow.Models.User_Table;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
@@ -45,7 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-public class SetupWeddingEventActivity extends AppCompatActivity {
+public class EditWeddingEventActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static int RESULT_LOAD_IMG = 1;
@@ -60,18 +56,21 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
     };
     private SharedPreferences SharedPrefs;
     private SharedPreferences.Editor Editor;
+    private WeddingEvent event;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup_wedding_event);
-
-
+        setContentView(R.layout.activity_edit_wedding_event);
 
         SharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Editor = SharedPrefs.edit();
+
+        int eventId = SharedPrefs.getInt(getString(R.string.SP_EventId), -1);
+
+        event = SQLite.select().from(WeddingEvent.class).where(WeddingEvent_Table.EventId.eq(eventId)).querySingle();
 
         final TextInputLayout parTil = findViewById(R.id.ParticipantsInputLayout);
         final TextInputLayout locTil = findViewById(R.id.LocationInputLayout);
@@ -81,17 +80,28 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         final EditText locEditText = findViewById(R.id.input_location);
         final EditText dateEditText = findViewById(R.id.input_date);
 
+        imageText = findViewById(R.id.input_image);
+
+        parEditText.setText(event.getParticipants());
+        locEditText.setText(event.getLocation());
+        dateEditText.setText(event.getWeddingDate());
+
+        if(event.getImage() != null){
+            imagePath = event.getImage();
+            imageText.setText(imagePath.substring(imagePath.lastIndexOf("/") + 1).trim());
+        }
 
 
         final ImageButton imageBtn = findViewById(R.id.imageBtn);
 
-        final Button completeSetupBtn = findViewById(R.id.completeSetupBtn);
+        final Button completeEditBtn = findViewById(R.id.editWeddingBtn);
 
-        Toolbar toolbar = findViewById(R.id.setupWedding_Toolbar);
+        Toolbar toolbar = findViewById(R.id.editWedding_Toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Setup Wedding");
+        getSupportActionBar().setTitle("Edit Wedding Details");
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +111,7 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(SetupWeddingEventActivity.this,
+                DatePickerDialog dialog = new DatePickerDialog(EditWeddingEventActivity.this,
                         R.style.DatePickerLight,
                         mDateSetListener,
                         year, month, day);
@@ -124,7 +134,7 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verifyStoragePermissions(SetupWeddingEventActivity.this);
+                verifyStoragePermissions(EditWeddingEventActivity.this);
                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMG);
             }
@@ -132,7 +142,7 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         });
 
 
-        completeSetupBtn.setOnClickListener(new View.OnClickListener() {
+        completeEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String participantsText = parEditText.getText().toString();
@@ -187,19 +197,18 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
                             dateEditText.getBackground().clearColorFilter();
                             int userId = SharedPrefs.getInt(getString(R.string.SP_UserId), -1);
                             if (userId != -1){
-                                WeddingEvent newEvent = new WeddingEvent();
 
-                                newEvent.setUserId(userId);
-                                newEvent.setLocation(locText);
-                                newEvent.setParticipants(participantsText);
-                                newEvent.setWeddingDate(dateText);
+                                event.setUserId(userId);
+                                event.setLocation(locText);
+                                event.setParticipants(participantsText);
+                                event.setWeddingDate(dateText);
 
                                 if (!imageText.getText().toString().equals("")){
-                                    newEvent.setImage(imagePath);
+                                    event.setImage(imagePath);
                                 } else {
-                                    newEvent.setImage(null);
+                                    event.setImage(null);
                                 }
-                                newEvent.save();
+                                event.save();
 
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
@@ -269,4 +278,22 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
+
