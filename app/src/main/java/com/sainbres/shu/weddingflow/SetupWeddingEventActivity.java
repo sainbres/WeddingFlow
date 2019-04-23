@@ -81,7 +81,7 @@ public class SetupWeddingEventActivity extends AppCompatActivity {
         final EditText locEditText = findViewById(R.id.input_location);
         final EditText dateEditText = findViewById(R.id.input_date);
 
-
+        imageText = findViewById(R.id.input_image);
 
         final ImageButton imageBtn = findViewById(R.id.imageBtn);
 

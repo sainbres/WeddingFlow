@@ -32,6 +32,20 @@
     <string name="wedding_location_hint">Location</string>
     <string name="wedding_date_hint">Date</string>
     <string name="wedding_picture_hint">Picture</string>
+    <string name="initial_savings_hint">Initial Savings</string>
+    <string name="periodic_savings_hint">Periodic Savings</string>
+    <string name="periodicity_hint">Periodicity</string>
+
+    <!-- Periodicity Spinner -->
+    <string-array name="periodicity_array">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+    </string-array>
+
+    <string name="weekly_periodicity">Weekly</string>
+    <string name="monthly_periodicity">Monthly</string>
+    <string name="quarterly_periodicity">Quarterly</string>
 
     <!-- checkbox -->
     <string name="login_checkbox">Stay signed in</string>
@@ -64,6 +78,7 @@
     <string name="current_password">Enter Current Password</string>
     <string name="new_password">Enter New Password</string>
     <string name="confirm_password">Confirm Password</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
