@@ -33,7 +33,7 @@ import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 import java.io.File;
 import java.net.URI;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private SharedPreferences SharedPrefs;
     private SharedPreferences.Editor Editor;
