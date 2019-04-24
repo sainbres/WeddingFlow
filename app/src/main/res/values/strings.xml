@@ -42,14 +42,14 @@
     <string name="upcoming_bill_label">Next Bill:</string>
     <string name="upcoming_increase_label">Next Fund Increase:</string>
     <string name="next_negative_label">Next Negative Balance:</string>
-    <string name="surplus_funds_label">Predicted surplus:</string>
+    <string name="surplus_funds_label">Predicted Surplus:</string>
 
     <!-- Overview Placeholders -->
     <string name="current_estimated_funds_placeholder">[---]</string>
     <string name="monthly_savings_placeholder">[---]</string>
     <string name="upcoming_bill_placeholder">[---]</string>
     <string name="upcoming_increase_placeholder">[---]</string>
-    <string name="next_negative_placeholder">[---]</string>
+    <string name="next_negative_placeholder">Never</string>
     <string name="surplus_funds_placeholder">[---]</string>
 
     <!-- Periodicity Spinner -->
