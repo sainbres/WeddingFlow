@@ -43,5 +43,11 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <style name="ButtonLayout" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorGreyAccent</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
 
 </resources>

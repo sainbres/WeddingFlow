@@ -5,14 +5,18 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.sainbres.shu.weddingflow.Fragments.PaymentBottomSheetFragment;
 import com.sainbres.shu.weddingflow.Models.Payment;
 import com.sainbres.shu.weddingflow.Models.Payment_Table;
 import com.sainbres.shu.weddingflow.PaymentAdapter;
@@ -59,6 +63,16 @@ public class BudgetBreakdownFragment extends Fragment {
         budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
 
         List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).queryList();
+
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentBottomSheetFragment bottomSheet = new PaymentBottomSheetFragment();
+                bottomSheet.show(getActivity().getSupportFragmentManager(), "bottomSheet");
+            }
+        });
 
         recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new PaymentAdapter(payments, getContext());

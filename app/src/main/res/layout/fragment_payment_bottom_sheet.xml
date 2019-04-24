@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:background="@color/colorPrimaryDark">
+
+
+    <Button
+        android:backgroundTint="@color/colorPrimary"
+        android:id="@+id/addPaymentBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:text="@string/bottomsheet_add_payment"
+        android:drawableStart="@drawable/ic_currency_usd"
+        android:drawableTint="@color/colorWhite"
+        android:paddingLeft="15dip"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:backgroundTint="@color/colorPrimary"
+        android:id="@+id/editSavingsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_cash_multiple"
+        android:drawableTint="@color/colorWhite"
+        android:paddingLeft="15dip"
+        android:text="@string/bottomsheet_edit_savings"
+        android:textColor="#FFFFFF"
+        android:drawablePadding="10dp"
+        android:textAllCaps="false"
+        android:textSize="20sp" />
+
+</LinearLayout>
