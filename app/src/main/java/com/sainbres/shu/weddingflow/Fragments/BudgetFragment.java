@@ -24,6 +24,8 @@ import com.sainbres.shu.weddingflow.BudgetTabFragments.BudgetBreakdownFragment;
 import com.sainbres.shu.weddingflow.BudgetTabFragments.BudgetOverviewFragment;
 import com.sainbres.shu.weddingflow.Models.InitialBudget;
 import com.sainbres.shu.weddingflow.Models.InitialBudget_Table;
+import com.sainbres.shu.weddingflow.Models.Payment;
+import com.sainbres.shu.weddingflow.Models.Payment_Table;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 import com.sainbres.shu.weddingflow.R;
@@ -80,6 +82,8 @@ public class BudgetFragment extends Fragment {
                     .querySingle();
 
             if (budget != null) {
+                Editor.putInt(getString(R.string.SP_BudgetId), budget.getBudgetId());
+                Editor.commit();
                 setupGraph(budget);
             }
             else{
@@ -155,15 +159,17 @@ public class BudgetFragment extends Fragment {
             String periodicity = budget.getSavingsPeriodicity();
             ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
             dataPoints.add(initialSavings);
-            do {
-                if (periodicity.equals("Monthly")){
-                    cal.setTime(periodicPaymentDate);
-                    cal.add(Calendar.MONTH, 1);
-                    periodicPaymentDate = cal.getTime();
-                }
-                ongoingSavings = ongoingSavings + budget.getSavingsPeriodic();
-                dataPoints.add(new DataPoint(periodicPaymentDate, ongoingSavings));
-            } while (periodicPaymentDate.before(savingsEndDate));
+
+            int budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
+            List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).queryList();
+            if (payments != null)
+            for (int i = 0; i < payments.size(); i++){
+                String paymentDateStr = payments.get(i).getDate();
+                double paymentAmount = payments.get(i).getAmount();
+                Date paymentDate = sdf.parse(paymentDateStr);
+                ongoingSavings = ongoingSavings + paymentAmount;
+                dataPoints.add(new DataPoint(paymentDate, ongoingSavings));
+            }
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[dataPoints.size()]));
             graph.addSeries(series);
             //graph.getGridLabelRenderer().setHorizontalAxisTitle("Months");

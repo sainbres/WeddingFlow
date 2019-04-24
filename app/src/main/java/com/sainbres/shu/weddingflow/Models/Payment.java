@@ -43,7 +43,7 @@ public class Payment extends BaseModel {
     public int getBudgetId() {
         return BudgetId;
     }
-    public void getBudgetId(int budgetId) {
+    public void setBudgetId(int budgetId) {
         BudgetId = budgetId;
     }
 

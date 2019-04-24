@@ -17,11 +17,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.sainbres.shu.weddingflow.Models.InitialBudget;
+import com.sainbres.shu.weddingflow.Models.InitialBudget_Table;
+import com.sainbres.shu.weddingflow.Models.Payment;
 import com.sainbres.shu.weddingflow.Models.WeddingEvent;
+import com.sainbres.shu.weddingflow.Models.WeddingEvent_Table;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SetupInitialBudgetActivity extends AppCompatActivity {
@@ -101,13 +107,94 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                     budget.setSavingsStartDate(dateNowStr);
                     budget.save();
 
+                    budget = SQLite.select()
+                            .from(InitialBudget.class)
+                            .where(InitialBudget_Table.EventId.eq(eventId))
+                            .querySingle();
+
+                    WeddingEvent event = SQLite.select()
+                            .from(WeddingEvent.class)
+                            .where(WeddingEvent_Table.EventId.eq(eventId))
+                            .querySingle();
+
+                    if (budget != null || event != null)
+                    {
+                        Date savingsEndDate = null;
+                        Date periodicPaymentDate = null;
+                        Calendar cal = Calendar.getInstance();
+                        try {
+                            savingsEndDate = sdf.parse(event.getWeddingDate());
+                            periodicPaymentDate = sdf.parse(budget.getSavingsStartDate());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        switch (budget.getSavingsPeriodicity())
+                            {
+                                case "Weekly": {
+                                    do {
+                                        cal.setTime(periodicPaymentDate);
+                                        cal.add(Calendar.WEEK_OF_YEAR, 1);
+                                        periodicPaymentDate = cal.getTime();
+                                        Payment payment = new Payment();
+                                        payment.setName("Periodic Savings");
+                                        payment.setMemo("Automatic weekly savings");
+                                        payment.setAmount(budget.getSavingsPeriodic());
+                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setBudgetId(budget.getBudgetId());
+                                        payment.save();
+                                    } while (periodicPaymentDate.before(savingsEndDate));
+                                }
+                                case "Monthly":{
+                                    do {
+                                        cal.setTime(periodicPaymentDate);
+                                        cal.add(Calendar.MONTH, 1);
+                                        periodicPaymentDate = cal.getTime();
+                                        Payment payment = new Payment();
+                                        payment.setName("Periodic Savings");
+                                        payment.setMemo("Automatic monthly savings");
+                                        payment.setAmount(budget.getSavingsPeriodic());
+                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setBudgetId(budget.getBudgetId());
+                                        payment.save();
+                                    } while (periodicPaymentDate.before(savingsEndDate));
+                                }
+                                case "Quarterly": {
+                                    do {
+                                        cal.setTime(periodicPaymentDate);
+                                        cal.add(Calendar.MONTH, 3);
+                                        periodicPaymentDate = cal.getTime();
+                                        Payment payment = new Payment();
+                                        payment.setName("Periodic Savings");
+                                        payment.setMemo("Automatic quarterly savings");
+                                        payment.setAmount(budget.getSavingsPeriodic());
+                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setBudgetId(budget.getBudgetId());
+                                        payment.save();
+                                    } while (periodicPaymentDate.before(savingsEndDate));
+                                }
+                            }
+                            /*
+                            if (budget.getSavingsPeriodicity().equals("Monthly")){
+                                cal.setTime(periodicPaymentDate);
+                                cal.add(Calendar.MONTH, 1);
+                                periodicPaymentDate = cal.getTime();
+                            }
+                            ongoingSavings = ongoingSavings + budget.getSavingsPeriodic();
+                            dataPoints.add(new DataPoint(periodicPaymentDate, ongoingSavings));
+                            */
+                        }
+                    }
+                    /*
+
+
+
+                    */
                     Bundle bundle = new Bundle();
                     bundle.putString("fragment", "budget");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
-                }
             }
         });
     }
