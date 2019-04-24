@@ -175,9 +175,20 @@ public class BudgetFragment extends Fragment {
             cal = Calendar.getInstance();
             cal.add(Calendar.MONTH, -1);
             Date min = cal.getTime();
-            cal = Calendar.getInstance();
-            cal.add(Calendar.MONTH, 1);
-            Date max = cal.getTime();
+            Date max;
+            if (min.before(savingsStartDate))
+            {
+                min = savingsStartDate;
+                cal.setTime(savingsStartDate);
+                cal.add(Calendar.MONTH, 2);
+                max = cal.getTime();
+            }
+            else{
+                cal = Calendar.getInstance();
+                cal.add(Calendar.MONTH, 1);
+                max = cal.getTime();
+            }
+
 
             graph.getViewport().setMinX(min.getTime());
             graph.getViewport().setMaxX(max.getTime());

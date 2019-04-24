@@ -78,29 +78,34 @@ public class MainActivity extends AppCompatActivity  {
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Bundle extras = getIntent().getExtras();
-
-        if(extras != null){ //Used to set correct fragment on MainActivity open
-
-        }
-        else { //Default to load HomeFragment
-            Fragment defaultFrag = new HomeFragment();
-            defaultFrag.setArguments(homeBundle());
-            loadFragment(defaultFrag);
-        }
-
-
-
-
         Toolbar toolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Home");
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
 
+        Bundle extras = getIntent().getExtras();
 
-        //toolbar.setNavigationIcon(R.drawable.ic_settings);
-        //getSupportActionBar().setIcon(R.drawable.ic_settings);
+        if(extras != null){ //Used to set correct fragment on MainActivity open
+            switch (extras.getString("fragment", "home")){
+                case "home":{
+                    //Fragment homeFragment = new HomeFragment();
+                    //homeFragment.setArguments(homeBundle());
+                    navigation.setSelectedItemId(R.id.action_home);
+                    //loadFragment(homeFragment);
+                }
+                case "budget":{
+                    //Fragment budgetFragment = new BudgetFragment();
+                    navigation.setSelectedItemId(R.id.action_budget);
+                    //loadFragment(budgetFragment);
+                }
+            }
+        }
+        else { //Default to load HomeFragment
+            Fragment defaultFrag = new HomeFragment();
+            defaultFrag.setArguments(homeBundle());
+            loadFragment(defaultFrag);
+        }
     }
 
     @Override
@@ -150,25 +155,30 @@ public class MainActivity extends AppCompatActivity  {
                 case R.id.action_home:
                     fragment = new HomeFragment();
                     fragment.setArguments(homeBundle());
+                    getSupportActionBar().setTitle("Home");
                     loadFragment(fragment);
                     return true;
 
                 case R.id.action_organize:
                     fragment = new OrganizeFragment();
+                    getSupportActionBar().setTitle("Organize");
                     loadFragment(fragment);
                     return true;
 
                 case R.id.action_budget:
                     fragment = new BudgetFragment();
+                    getSupportActionBar().setTitle("Budget");
                     loadFragment(fragment);
                     return true;
 
                 case R.id.action_guest_list:
                     fragment = new GuestListFragment();
+                    getSupportActionBar().setTitle("Guests");
                     loadFragment(fragment);
                     return true;
                 case R.id.action_share:
                     fragment = new ShareFragment();
+                    getSupportActionBar().setTitle("Share");
                     loadFragment(fragment);
                     return true;
             }

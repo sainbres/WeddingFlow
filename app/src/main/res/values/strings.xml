@@ -36,6 +36,22 @@
     <string name="periodic_savings_hint">Periodic Savings</string>
     <string name="periodicity_hint">Periodicity</string>
 
+    <!-- Overview Labels -->
+    <string name="current_estimated_funds_label">Current Estimated Funds:</string>
+    <string name="monthly_savings_label">Monthly Savings:</string>
+    <string name="upcoming_bill_label">Next Bill:</string>
+    <string name="upcoming_increase_label">Next Fund Increase:</string>
+    <string name="next_negative_label">Next Negative Balance:</string>
+    <string name="surplus_funds_label">Predicted surplus:</string>
+
+    <!-- Overview Placeholders -->
+    <string name="current_estimated_funds_placeholder">[---]</string>
+    <string name="monthly_savings_placeholder">[---]</string>
+    <string name="upcoming_bill_placeholder">[---]</string>
+    <string name="upcoming_increase_placeholder">[---]</string>
+    <string name="next_negative_placeholder">[---]</string>
+    <string name="surplus_funds_placeholder">[---]</string>
+
     <!-- Periodicity Spinner -->
     <string-array name="periodicity_array">
         <item>Weekly</item>
