@@ -242,7 +242,7 @@ public class EditPaymentActivity extends AppCompatActivity {
 
 
                                 String dateStore = sdfStorage.format(sdf.parse(dateText));
-                                
+
                                 payment.setName(nameText);
                                 payment.setDate(dateStore);
                                 payment.setMemo(memoText);

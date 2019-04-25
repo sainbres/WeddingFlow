@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.sainbres.shu.weddingflow.Models.Payment;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -43,10 +44,11 @@ public class PaymentAdapter extends RecyclerView.Adapter<paymentViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull paymentViewHolder paymentViewHolder, int i) {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
         paymentViewHolder.paymentName.setText(list.get(i).getName());
         paymentViewHolder.paymentMemo.setText(list.get(i).getMemo());
         double amount = list.get(i).getAmount();
-        paymentViewHolder.paymentAmount.setText(Double.toString(amount));
+        paymentViewHolder.paymentAmount.setText(currency.format(amount));
         if (amount < 0)
         {
             paymentViewHolder.paymentAmount.setTextColor(Color.parseColor("#b00200"));
