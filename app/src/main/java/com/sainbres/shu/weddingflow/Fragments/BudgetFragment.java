@@ -161,6 +161,7 @@ public class BudgetFragment extends Fragment {
             String periodicity = budget.getSavingsPeriodicity();
             ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
             dataPoints.add(initialSavings);
+            double paymentsMaxY = 0;
 
             int budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
             List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).orderBy(Payment_Table.Date, true).queryList();
@@ -170,6 +171,9 @@ public class BudgetFragment extends Fragment {
                 double paymentAmount = payments.get(i).getAmount();
                 Date paymentDate = sdf.parse(paymentDateStr);
                 ongoingSavings = ongoingSavings + paymentAmount;
+                if (ongoingSavings > paymentsMaxY){
+                    paymentsMaxY = ongoingSavings;
+                }
                 dataPoints.add(new DataPoint(paymentDate, ongoingSavings));
             }
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[dataPoints.size()]));
@@ -205,7 +209,7 @@ public class BudgetFragment extends Fragment {
 
 
             graph.getViewport().setMinY(0);
-            graph.getViewport().setMaxY(4000);
+            graph.getViewport().setMaxY(paymentsMaxY + 200);
             graph.getViewport().setYAxisBoundsManual(true);
 
             graph.getViewport().setScrollable(true); // enables horizontal scrolling
