@@ -52,8 +52,9 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".EditWeddingEventActivity" />
         <activity android:name=".SetupInitialBudgetActivity" />
-        <activity android:name=".AddPaymentActivitiy" />
-        <activity android:name=".EditInitialBudgetActivity"></activity>
+        <activity android:name=".AddPaymentActivity" />
+        <activity android:name=".EditInitialBudgetActivity" />
+        <activity android:name=".EditPaymentActivity"></activity>
     </application>
 
 </manifest>

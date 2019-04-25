@@ -1,6 +1,7 @@
 package com.sainbres.shu.weddingflow.BudgetTabFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.sainbres.shu.weddingflow.EditPaymentActivity;
+import com.sainbres.shu.weddingflow.EditWeddingEventActivity;
 import com.sainbres.shu.weddingflow.Fragments.PaymentBottomSheetFragment;
 import com.sainbres.shu.weddingflow.Models.Payment;
 import com.sainbres.shu.weddingflow.Models.Payment_Table;
@@ -89,9 +92,25 @@ public class BudgetBreakdownFragment extends Fragment {
         final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onLeftClicked(int position) {
+                List<Payment> adapterPayments = adapter.getPayments();
+                int paymentId = adapterPayments.get(position).getPaymentId();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("PaymentId", paymentId);
+                Intent intent = new Intent(getContext(), EditPaymentActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
             @Override
             public void onRightClicked(int position) {
+                int paymentId = adapter.list.get(position).getPaymentId();
+                SQLite.delete()
+                        .from(Payment.class)
+                        .where(Payment_Table.PaymentId.eq(paymentId))
+                        .execute();
+                adapter.list.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, adapter.getItemCount());
             }
         });
 

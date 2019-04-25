@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPaymentActivitiy">
+    tools:context=".EditPaymentActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/addPayment_AppBarLayout"
+        android:id="@+id/editPayment_AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -15,7 +15,7 @@
 
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/addPayment_Toolbar"
+            android:id="@+id/editPayment_Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="8dp"
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPayment_AppBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/editPayment_AppBarLayout">
 
         <EditText
             android:id="@+id/input_payment_name"
@@ -145,13 +145,13 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerLabel"/>
 
     <Button
-        android:id="@+id/addPaymentBtn"
+        android:id="@+id/editPaymentBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/add_payment_button"
+        android:text="@string/edit_payment_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_direction" />

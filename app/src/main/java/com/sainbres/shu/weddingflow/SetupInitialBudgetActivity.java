@@ -142,6 +142,7 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                                         payment.setAmount(budget.getSavingsPeriodic());
                                         payment.setDate(sdfStorage.format(periodicPaymentDate));
                                         payment.setBudgetId(budget.getBudgetId());
+                                        payment.setDirection("In");
                                         payment.save();
                                     } while (periodicPaymentDate.before(savingsEndDate));
                                 }
@@ -156,6 +157,7 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                                         payment.setAmount(budget.getSavingsPeriodic());
                                         payment.setDate(sdfStorage.format(periodicPaymentDate));
                                         payment.setBudgetId(budget.getBudgetId());
+                                        payment.setDirection("In");
                                         payment.save();
                                     } while (periodicPaymentDate.before(savingsEndDate));
                                 }

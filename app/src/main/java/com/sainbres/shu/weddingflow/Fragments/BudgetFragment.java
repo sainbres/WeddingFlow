@@ -86,7 +86,8 @@ public class BudgetFragment extends Fragment {
             if (budget != null) {
                 Editor.putInt(getString(R.string.SP_BudgetId), budget.getBudgetId());
                 Editor.commit();
-                setupGraph(budget);
+                int budgetId = budget.getBudgetId();
+                setupGraph(budgetId);
             }
             else{
                 Intent intent = new Intent(getActivity(), SetupInitialBudgetActivity.class);
@@ -128,7 +129,14 @@ public class BudgetFragment extends Fragment {
         return view;
     }
 
-    private void setupGraph(InitialBudget budget){
+    public void setupGraph(int id){
+
+        eventId = SharedPrefs.getInt(getString(R.string.SP_EventId), -1);
+
+        InitialBudget budget = SQLite.select()
+                .from(InitialBudget.class)
+                .where(InitialBudget_Table.BudgetId.eq(id))
+                .querySingle();
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

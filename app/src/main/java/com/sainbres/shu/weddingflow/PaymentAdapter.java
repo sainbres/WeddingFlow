@@ -17,7 +17,7 @@ import java.util.List;
 
 public class PaymentAdapter extends RecyclerView.Adapter<paymentViewHolder> {
 
-    List<Payment> list = Collections.emptyList();
+    public List<Payment> list = Collections.emptyList();
     Context context;
 
     public PaymentAdapter(List<Payment> list, Context context)
@@ -72,5 +72,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<paymentViewHolder> {
     public void onAttachedToRecyclerView(RecyclerView recyclerView)
     {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public List<Payment> getPayments()
+    {
+        return list;
     }
 }
