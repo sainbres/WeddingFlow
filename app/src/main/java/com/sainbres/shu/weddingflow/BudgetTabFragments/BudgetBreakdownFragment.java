@@ -2,14 +2,17 @@ package com.sainbres.shu.weddingflow.BudgetTabFragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,8 @@ import com.sainbres.shu.weddingflow.Models.Payment;
 import com.sainbres.shu.weddingflow.Models.Payment_Table;
 import com.sainbres.shu.weddingflow.PaymentAdapter;
 import com.sainbres.shu.weddingflow.R;
+import com.sainbres.shu.weddingflow.SwipeController;
+import com.sainbres.shu.weddingflow.SwipeControllerActions;
 
 import java.util.List;
 
@@ -78,7 +83,28 @@ public class BudgetBreakdownFragment extends Fragment {
         adapter = new PaymentAdapter(payments, getContext());
 
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+
+
+        final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onLeftClicked(int position) {
+            }
+            @Override
+            public void onRightClicked(int position) {
+            }
+        });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
+
         return view;
     }
 

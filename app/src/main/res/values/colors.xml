@@ -9,5 +9,6 @@
     <color name="colorPrimaryTrans">#b3487EB0</color>
     <color name="colorWhiteTrans">#b3ffffff</color>
     <color name="colorLightGrey">#c6c6c6</color>
+    <color name="colorNearlyWhite">#fbfbfb</color>
 
 </resources>

@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,6 +23,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.sainbres.shu.weddingflow.BudgetTabFragments.BudgetBreakdownFragment;
 import com.sainbres.shu.weddingflow.BudgetTabFragments.BudgetOverviewFragment;
+import com.sainbres.shu.weddingflow.CustomViewPager;
 import com.sainbres.shu.weddingflow.Models.InitialBudget;
 import com.sainbres.shu.weddingflow.Models.InitialBudget_Table;
 import com.sainbres.shu.weddingflow.Models.Payment;
@@ -98,7 +100,7 @@ public class BudgetFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Breakdown"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = view.findViewById(R.id.pager);
+        final CustomViewPager viewPager = view.findViewById(R.id.pager);
         final com.sainbres.shu.weddingflow.PagerAdapter adapter = new com.sainbres.shu.weddingflow.PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
