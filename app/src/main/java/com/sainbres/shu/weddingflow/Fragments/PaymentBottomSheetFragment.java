@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.sainbres.shu.weddingflow.AddPaymentActivitiy;
+import com.sainbres.shu.weddingflow.EditInitialBudgetActivity;
 import com.sainbres.shu.weddingflow.R;
 
 
@@ -46,7 +47,8 @@ public class PaymentBottomSheetFragment extends BottomSheetDialogFragment {
         editSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getView().getContext(), EditInitialBudgetActivity.class);
+                startActivity(intent);
             }
         });
 
