@@ -128,7 +128,9 @@ public class BudgetFragment extends Fragment {
 
     private void setupGraph(InitialBudget budget){
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdfStorage = new SimpleDateFormat("yyyy-MM-dd");
         try {
 
             WeddingEvent event = SQLite.select()
@@ -161,10 +163,10 @@ public class BudgetFragment extends Fragment {
             dataPoints.add(initialSavings);
 
             int budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
-            List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).queryList();
+            List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).orderBy(Payment_Table.Date, true).queryList();
             if (payments != null)
             for (int i = 0; i < payments.size(); i++){
-                String paymentDateStr = payments.get(i).getDate();
+                String paymentDateStr = sdf.format(sdfStorage.parse(payments.get(i).getDate())); //Convert date from storage date to show date
                 double paymentAmount = payments.get(i).getAmount();
                 Date paymentDate = sdf.parse(paymentDateStr);
                 ongoingSavings = ongoingSavings + paymentAmount;
@@ -177,6 +179,7 @@ public class BudgetFragment extends Fragment {
 
             graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+
 
             cal = Calendar.getInstance();
             cal.add(Calendar.MONTH, -1);

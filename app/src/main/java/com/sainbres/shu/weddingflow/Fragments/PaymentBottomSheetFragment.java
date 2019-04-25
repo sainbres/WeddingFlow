@@ -1,6 +1,7 @@
 package com.sainbres.shu.weddingflow.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.sainbres.shu.weddingflow.AddPaymentActivitiy;
 import com.sainbres.shu.weddingflow.R;
 
 
@@ -36,6 +38,15 @@ public class PaymentBottomSheetFragment extends BottomSheetDialogFragment {
         addPaymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getView().getContext(), AddPaymentActivitiy.class);
+                startActivity(intent);
+            }
+        });
+
+        editSavingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

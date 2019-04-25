@@ -94,6 +94,7 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                     //do nothing
                 } else {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    SimpleDateFormat sdfStorage = new SimpleDateFormat("yyyy-MM-dd");
                     Date dateNow = new Date();
                     String dateNowStr = sdf.format(dateNow);
 
@@ -139,7 +140,7 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                                         payment.setName("Periodic Savings");
                                         payment.setMemo("Automatic weekly savings");
                                         payment.setAmount(budget.getSavingsPeriodic());
-                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setDate(sdfStorage.format(periodicPaymentDate));
                                         payment.setBudgetId(budget.getBudgetId());
                                         payment.save();
                                     } while (periodicPaymentDate.before(savingsEndDate));
@@ -153,7 +154,7 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                                         payment.setName("Periodic Savings");
                                         payment.setMemo("Automatic monthly savings");
                                         payment.setAmount(budget.getSavingsPeriodic());
-                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setDate(sdfStorage.format(periodicPaymentDate));
                                         payment.setBudgetId(budget.getBudgetId());
                                         payment.save();
                                     } while (periodicPaymentDate.before(savingsEndDate));
@@ -167,8 +168,9 @@ public class SetupInitialBudgetActivity extends AppCompatActivity {
                                         payment.setName("Periodic Savings");
                                         payment.setMemo("Automatic quarterly savings");
                                         payment.setAmount(budget.getSavingsPeriodic());
-                                        payment.setDate(sdf.format(periodicPaymentDate));
+                                        payment.setDate(sdfStorage.format(periodicPaymentDate));
                                         payment.setBudgetId(budget.getBudgetId());
+                                        payment.setDirection("In");
                                         payment.save();
                                     } while (periodicPaymentDate.before(savingsEndDate));
                                 }

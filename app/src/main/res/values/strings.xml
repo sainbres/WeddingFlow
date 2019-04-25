@@ -59,6 +59,13 @@
         <item>Quarterly</item>
     </string-array>
 
+
+    <!-- Direction Spinner -->
+    <string-array name="direction_array">
+        <item>Out</item>
+        <item>In</item>
+    </string-array>
+
     <string name="weekly_periodicity">Weekly</string>
     <string name="monthly_periodicity">Monthly</string>
     <string name="quarterly_periodicity">Quarterly</string>
@@ -76,7 +83,10 @@
     <string name="sign_up_button">Sign up</string>
     <string name="complete_setup_button">Complete Setup</string>
     <string name="edit_wedding_button">Finish Editing</string>
+    <string name="edit_budget_button">Finish Editing</string>
     <string name="change_password_button">Change Password</string>
+    <string name="add_payment_button">Add Payment</string>
+    <string name="edit_payment_button">Edit Payment</string>
 
     <!-- Payment Card -->
     <string name="payment_name_placeholder">Name</string>
@@ -107,4 +117,11 @@
     <string name="bottomsheet_edit_savings">Edit Savings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Add Payment -->
+    <string name="payment_name_hint">Name</string>
+    <string name="payment_date_hint">Scheduled for</string>
+    <string name="payment_memo_hint">Memo</string>
+    <string name="payment_amount_hint">Amount</string>
+    <string name="payment_direction_hint">Direction</string>
 </resources>

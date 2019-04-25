@@ -51,7 +51,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".EditWeddingEventActivity" />
-        <activity android:name=".SetupInitialBudgetActivity"></activity>
+        <activity android:name=".SetupInitialBudgetActivity" />
+        <activity android:name=".AddPaymentActivitiy"></activity>
     </application>
 
 </manifest>

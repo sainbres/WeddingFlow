@@ -1,6 +1,7 @@
 package com.sainbres.shu.weddingflow;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.sainbres.shu.weddingflow.Models.Payment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,8 +45,22 @@ public class PaymentAdapter extends RecyclerView.Adapter<paymentViewHolder> {
     public void onBindViewHolder(@NonNull paymentViewHolder paymentViewHolder, int i) {
         paymentViewHolder.paymentName.setText(list.get(i).getName());
         paymentViewHolder.paymentMemo.setText(list.get(i).getMemo());
-        paymentViewHolder.paymentAmount.setText(Double.toString(list.get(i).getAmount()));
-        paymentViewHolder.paymentDate.setText(list.get(i).getDate());
+        double amount = list.get(i).getAmount();
+        paymentViewHolder.paymentAmount.setText(Double.toString(amount));
+        if (amount < 0)
+        {
+            paymentViewHolder.paymentAmount.setTextColor(Color.parseColor("#b00200"));
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdfStorage = new SimpleDateFormat("yyyy-MM-dd");
+        String dateShow = "";
+        try {
+            dateShow = sdf.format(sdfStorage.parse(list.get(i).getDate()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        paymentViewHolder.paymentDate.setText(dateShow);
     }
 
     @Override

@@ -62,7 +62,7 @@ public class BudgetBreakdownFragment extends Fragment {
 
         budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
 
-        List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).queryList();
+        List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).orderBy(Payment_Table.Date, true).queryList();
 
         FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
 
