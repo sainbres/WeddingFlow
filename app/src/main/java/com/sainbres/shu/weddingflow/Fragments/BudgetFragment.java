@@ -162,6 +162,7 @@ public class BudgetFragment extends Fragment {
             ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
             dataPoints.add(initialSavings);
             double paymentsMaxY = 0;
+            double paymentsMinY = 0;
 
             int budgetId = SharedPrefs.getInt(getString(R.string.SP_BudgetId), -1);
             List<Payment> payments = SQLite.select().from(Payment.class).where(Payment_Table.BudgetId.eq(budgetId)).orderBy(Payment_Table.Date, true).queryList();
@@ -173,6 +174,9 @@ public class BudgetFragment extends Fragment {
                 ongoingSavings = ongoingSavings + paymentAmount;
                 if (ongoingSavings > paymentsMaxY){
                     paymentsMaxY = ongoingSavings;
+                }
+                if (ongoingSavings < paymentsMinY){
+                    paymentsMinY = ongoingSavings;
                 }
                 dataPoints.add(new DataPoint(paymentDate, ongoingSavings));
             }
@@ -208,7 +212,7 @@ public class BudgetFragment extends Fragment {
             graph.getViewport().setXAxisBoundsManual(true);
 
 
-            graph.getViewport().setMinY(0);
+            graph.getViewport().setMinY(paymentsMinY);
             graph.getViewport().setMaxY(paymentsMaxY + 200);
             graph.getViewport().setYAxisBoundsManual(true);
 
