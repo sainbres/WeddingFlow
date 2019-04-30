@@ -1,10 +1,16 @@
 package com.sainbres.shu.weddingflow;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper.Callback;
 import android.view.MotionEvent;
@@ -31,9 +37,12 @@ public class SwipeController extends Callback {
     private SwipeControllerActions buttonsActions = null;
 
     private static final float buttonWidth = 300;
+    private Context context;
 
-    public SwipeController(SwipeControllerActions buttonsActions) {
+    public SwipeController(SwipeControllerActions buttonsActions, Context context) {
         this.buttonsActions = buttonsActions;
+        this.context = context;
+
     }
 
     @Override
@@ -156,6 +165,7 @@ public class SwipeController extends Callback {
         RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
         p.setColor(Color.parseColor("#40739E"));
         c.drawRect(leftButton, p);
+
         drawText("EDIT", c, leftButton, p);
 
         RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
@@ -175,13 +185,29 @@ public class SwipeController extends Callback {
     }
 
     private void drawText(String text, Canvas c, RectF button, Paint p) {
+        Resources res = context.getResources();
+        VectorDrawableCompat mVector;
+        if(text.equals("DELETE"))
+            mVector = VectorDrawableCompat.create(res, R.drawable.ic_delete, null);
+        else
+            mVector = VectorDrawableCompat.create(res, R.drawable.ic_edit, null);
+
+
         float textSize = 60;
         p.setColor(Color.WHITE);
         p.setAntiAlias(true);
         p.setTextSize(textSize);
 
+
         float textWidth = p.measureText(text);
-        c.drawText(text, button.centerX()-(textWidth/2), button.centerY()+(textSize/2), p);
+        c.save();
+        c.translate(button.centerX()- 50, button.centerY() - 50);
+        mVector.setBounds(0,0,100,100);
+        mVector.draw(c);
+        c.restore();
+        //c.drawText(text, button.centerX()-(textWidth/2), button.centerY()+(textSize/2), p);
+
+
     }
 
     public void onDraw(Canvas c) {

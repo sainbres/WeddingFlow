@@ -62,8 +62,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_currency_usd" />
-                            <entry key="sourceFile" value="C:\Users\Arnoux\Google Drive\Uni Work\SE\Y3\Project\Designs\Icons\addpayment-currency\currency-usd.svg" />
+                            <entry key="outputName" value="ic_edit" />
+                            <entry key="sourceFile" value="C:\Users\Arnoux\Google Drive\Uni Work\SE\Y3\Project\Designs\Icons\edit-pencil\edit.svg" />
                           </map>
                         </option>
                       </PersistentState>
